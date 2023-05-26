@@ -5,9 +5,7 @@ import 'glightbox/dist/css/glightbox.min.css'
 import 'swiper/swiper-bundle.min.css'
 import './assets/css/style.css'
 
-import 'bootstrap';
-import GLightbox from 'glightbox';
-
+import 'bootstrap'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

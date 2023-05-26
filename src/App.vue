@@ -7,9 +7,27 @@
 // import PureCounter from '@srexi/purecounterjs'
 
 import AOS from 'aos'
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
+
+const navbarlinks = ref(null)
+
+const navbarlinksActive = () => {
+  let position = window.scrollY + 200
+  navbarlinks.value.forEach(navbarlink => {
+    if (!navbarlink.hash) return
+    let section = select(navbarlink.hash)
+    if (!section) return
+    if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+      navbarlink.classList.add('active')
+    } else {
+      navbarlink.classList.remove('active')
+    }
+  })
+}
 
 onMounted(() => {
+  window.addEventListener('load', navbarlinksActive)
+
   window.addEventListener('load', () => {
     AOS.init({
       duration: 1000,
@@ -28,7 +46,7 @@ onMounted(() => {
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex flex-column justify-content-center">
 
-    <nav id="navbar" class="navbar nav-menu">
+    <nav ref="navbarlinks" id="navbar" class="navbar nav-menu">
       <ul>
         <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>

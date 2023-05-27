@@ -1,15 +1,26 @@
 <script setup>
 // import GLightbox from 'glightbox';
-// import Typed from 'typed-js'
 // import 'waypoints/lib/noframework.waypoints'
 // import Isotope from 'isotope-layout'
 // import Swiper from 'swiper';
 // import PureCounter from '@srexi/purecounterjs'
 
-// import AOS from 'aos'
-import { ref, onMounted } from 'vue'
+import AOS from 'aos'
+import { Typed } from "@duskmoon/vue3-typed-js";
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-// const position = ref(null)
+import SocialLinks from './components/SocialLinks.vue';
+
+const profileName = "Jayson Millan"
+const rolesList = ref(["Web applications developer", "Business automation developer", "DevOps enthusiast"])
+const options = {
+  strings: rolesList.value,
+  loop: true,
+  typeSpeed: 100,
+  backSpeed: 50,
+  backDelay: 2000
+}
+
 const links = ref([
   {id: '#hero', label: 'Home', icon: 'bx bx-home'},
   {id: '#about', label: 'About', icon: 'bx bx-user'},
@@ -18,26 +29,56 @@ const links = ref([
   {id: '#services', label: 'Services', icon: 'bx bx-server'},
   {id: '#contact', label: 'Contact', icon: 'bx bx-envelope'},
 ])
-const activeLink = ref(links.value[0])
 
-const setActiveLink = (el, link) => {
-  activeLink.value = link
-  // if (position.value >= el.offsetTop && position.value <= (el.offsetTop + el.offsetHeight)) {
-  //   activeLink.value = link
-  // }
+const onscroll = (el, listener) => {
+  el.addEventListener('scroll', listener)
 }
 
-const getLinkClasses = (link) => {
-  const cls = {
-    'nav-link': true,
-    scrollto: true,
-    active: link.id === activeLink.value.id,
+const select = (el, all = false) => {
+  el = el.trim()
+  if (all) {
+    return [...document.querySelectorAll(el)]
+  } else {
+    return document.querySelector(el)
   }
-  return cls;
+}
+
+const navbarlinks = ref(null)
+const navbarlinksActive = () => {
+  let position = window.scrollY + 200
+  navbarlinks.value.forEach((navbarlink) => {
+    if (!navbarlink.hash) return
+    let section = select(navbarlink.hash)
+    if (!section) return
+    if (position >= section.offsetTop && position <= section.offsetTop + section.offsetHeight) {
+      navbarlink.classList.add('active')
+    } else {
+      navbarlink.classList.remove('active')
+    }
+  })
 }
 
 onMounted(() => {
-  // position.value = window.scrollY + 200
+  window.addEventListener('load', navbarlinksActive)
+  onscroll(document, navbarlinksActive)
+
+
+  /**
+   * Animation on scroll
+   */
+   window.addEventListener('load', () => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    })
+  })
+
+})
+
+onBeforeUnmount(() => {
+
 })
 </script>
 
@@ -47,10 +88,13 @@ onMounted(() => {
   <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex flex-column justify-content-center">
-    <nav ref="navbarlinks" id="navbar" class="navbar nav-menu">
+    <nav id="navbar" class="navbar nav-menu">
       <ul>
         <li v-for="(link, index) in links" :key="index">
-          <a :href="link.id" :class="getLinkClasses(link)" @click="setActiveLink($event, link)"
+          <a v-if="index === 0" ref="navbarlinks" :href="link.id" class="nav-link scrollto active"
+            ><i :class="link.icon"></i> <span>{{ link.label }}</span></a
+          >
+          <a v-else ref="navbarlinks" :href="link.id" class="nav-link scrollto"
             ><i :class="link.icon"></i> <span>{{ link.label }}</span></a
           >
         </li>
@@ -63,18 +107,14 @@ onMounted(() => {
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Brandon Johnson</h1>
+      <h1>{{ profileName }}</h1>
       <p>
-        I'm
-        <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span>
+        I'm a
+        <Typed :options="options" style="display: inline-block; ">
+          <span class="typing"></span>
+        </Typed>
       </p>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
+      <SocialLinks />
     </div>
   </section>
   <!-- End Hero -->
@@ -337,7 +377,7 @@ onMounted(() => {
           <div class="col-lg-6">
             <h3 class="resume-title">Sumary</h3>
             <div class="resume-item pb-0">
-              <h4>Brandon Johnson</h4>
+              <h4>{{ profileName }}</h4>
               <p>
                 <em
                   >Innovative and deadline-driven Graphic Designer with 3+ years of experience
@@ -1074,18 +1114,12 @@ onMounted(() => {
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3>Brandon Johnson</h3>
+      <h3>{{ profileName }}</h3>
       <p>
         Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe
         commodi placeat.
       </p>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
+      <SocialLinks />
       <div class="copyright">
         &copy; Copyright <strong><span>MyResume</span></strong
         >. All Rights Reserved

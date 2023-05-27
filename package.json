@@ -10,6 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@duskmoon/vue3-typed-js": "^0.0.4",
     "@popperjs/core": "^2.11.7",
     "@srexi/purecounterjs": "^1.5.0",
     "aos": "^2.3.4",

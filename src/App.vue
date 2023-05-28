@@ -30,6 +30,18 @@ const links = ref([
   {id: '#contact', label: 'Contact', icon: 'bx bx-envelope'},
 ])
 
+const aboutInfo1 = [
+  {label: 'Age', info: '35'},
+  {label: 'Language', info: 'Filipino, English'},
+  {label: 'Degree', info: 'BS Computer Engineering'},
+  {label: 'City', info: 'Davao City, Philippines'},
+]
+const aboutInfo2 = [
+  {label: 'Website', info: 'https://jaysonmillan.com'},
+  {label: 'Email', info: 'jcmitconsulting@gmail.com'},
+  {label: 'Availability', info: 'Freelance, Side hustles'}
+]
+
 const onscroll = (el, listener) => {
   el.addEventListener('scroll', listener)
 }
@@ -126,66 +138,39 @@ onBeforeUnmount(() => {
         <div class="section-title">
           <h2>About</h2>
           <p>
-            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum
-            quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
-            impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+            Leverage my proficiencies in various tech stacks to contribute to a dynamic organization where I can apply my skills and expertise to develop innovative solutions and drive business success.
           </p>
         </div>
 
         <div class="row">
           <div class="col-lg-4">
-            <img src="./assets/img/profile-img.jpg" class="img-fluid" alt="" />
+            <img src="./assets/img/me-profile-img.jpeg" class="img-fluid" alt="" />
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3>UI/UX Designer &amp; Web Developer.</h3>
+            <h3>Web Applications &amp; Business Automations Developer.</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
+              Unlocking Efficiency, Empowering Growth: Your Partner in Web Apps & Business Automations for Streamlined Success.
             </p>
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li>
-                    <i class="bi bi-chevron-right"></i> <strong>Birthday:</strong>
-                    <span>1 May 1995</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-chevron-right"></i> <strong>Website:</strong>
-                    <span>www.example.com</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-chevron-right"></i> <strong>Phone:</strong>
-                    <span>+123 456 7890</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-chevron-right"></i> <strong>City:</strong>
-                    <span>New York, USA</span>
+                  <li v-for="(about, index) in aboutInfo1" :key="index">
+                    <i class="bi bi-chevron-right"></i> <strong>{{ about.label }}:</strong>
+                    <span>{{ about.info }}</span>
                   </li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                  <li>
-                    <i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong>
-                    <span>email@example.com</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-chevron-right"></i> <strong>Freelance:</strong>
-                    <span>Available</span>
+                  <li v-for="(about, index) in aboutInfo2" :key="index">
+                    <i class="bi bi-chevron-right"></i> <strong>{{ about.label }}:</strong>
+                    <span>{{ about.info }}</span>
                   </li>
                 </ul>
               </div>
             </div>
             <p>
-              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt
-              adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-              Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia
-              repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui
-              repellendus omnis culpa magni laudantium dolores.
+              Efficiency unlocked. Growth empowered. I specialize in Web Applications & Business Automations, leveraging cutting-edge technologies to streamline operations. From customized web apps to seamless integrations, I can automate workflows, optimize processes, and deliver success-driven solutions for your business.
             </p>
           </div>
         </div>
@@ -197,11 +182,9 @@ onBeforeUnmount(() => {
     <section id="facts" class="facts">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Facts</h2>
+          <h2>Fun Facts</h2>
           <p>
-            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum
-            quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
-            impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+            Here are some entertaining facts about me that might pique your interest and showcase my diverse capabilities, knowledge, and personality.
           </p>
         </div>
 
@@ -209,6 +192,7 @@ onBeforeUnmount(() => {
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="bi bi-emoji-smile"></i>
+              <!-- <font-awesome-icon icon="dragon" /> -->
               <span
                 data-purecounter-start="0"
                 data-purecounter-end="232"

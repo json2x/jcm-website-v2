@@ -6,6 +6,7 @@
 // import PureCounter from '@srexi/purecounterjs'
 
 import AOS from 'aos'
+import PureCounter from '@srexi/purecounterjs'
 import { Typed } from "@duskmoon/vue3-typed-js";
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
@@ -34,9 +35,10 @@ const aboutInfo1 = [
   {label: 'Age', info: '35'},
   {label: 'Language', info: 'Filipino, English'},
   {label: 'Degree', info: 'BS Computer Engineering'},
-  {label: 'City', info: 'Davao City, Philippines'},
+  {label: 'University', info: 'Ateneo de Davao University'}
 ]
 const aboutInfo2 = [
+  {label: 'City', info: 'Davao City, Philippines'},
   {label: 'Website', info: 'https://jaysonmillan.com'},
   {label: 'Email', info: 'jcmitconsulting@gmail.com'},
   {label: 'Availability', info: 'Freelance, Side hustles'}
@@ -87,6 +89,7 @@ onMounted(() => {
     })
   })
 
+  new PureCounter();
 })
 
 onBeforeUnmount(() => {
@@ -191,54 +194,58 @@ onBeforeUnmount(() => {
         <div class="row">
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
+              <!-- <i class="bi bi-emoji-smile"></i> -->
+              <i class="fa-solid fa-dragon"></i>
               <!-- <font-awesome-icon icon="dragon" /> -->
               <span
                 data-purecounter-start="0"
-                data-purecounter-end="232"
+                data-purecounter-end="1988"
                 data-purecounter-duration="1"
                 class="purecounter"
               ></span>
-              <p>Happy Clients</p>
+              <p>Year of  the Dragon</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
             <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
+              <!-- <i class="bi bi-journal-richtext"></i> -->
+              <i class="fa-solid fa-person-biking"></i>
               <span
                 data-purecounter-start="0"
-                data-purecounter-end="521"
+                data-purecounter-end="45"
                 data-purecounter-duration="1"
                 class="purecounter"
               ></span>
-              <p>Projects</p>
+              <p>kilometers, longest bike ride</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
-              <i class="bi bi-headset"></i>
+              <!-- <i class="bi bi-headset"></i> -->
+              <i class="fa-solid fa-volleyball"></i>
               <span
                 data-purecounter-start="0"
-                data-purecounter-end="1463"
+                data-purecounter-end="1000"
                 data-purecounter-duration="1"
                 class="purecounter"
               ></span>
-              <p>Hours Of Support</p>
+              <p>plus volleyball games</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
-              <i class="bi bi-award"></i>
+              <!-- <i class="bi bi-award"></i> -->
+              <i class="fa-solid fa-computer"></i>
               <span
                 data-purecounter-start="0"
-                data-purecounter-end="25"
+                data-purecounter-end="6000"
                 data-purecounter-duration="1"
                 class="purecounter"
               ></span>
-              <p>Awards</p>
+              <p>Hours of DOTA</p>
             </div>
           </div>
         </div>

@@ -7,8 +7,10 @@
 
 import AOS from 'aos'
 import PureCounter from '@srexi/purecounterjs'
+import { Waypoint } from "vue-waypoint";
 import { Typed } from "@duskmoon/vue3-typed-js";
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+
 
 import SocialLinks from './components/SocialLinks.vue';
 
@@ -44,6 +46,41 @@ const aboutInfo2 = [
   {label: 'Availability', info: 'Freelance, Side hustles'}
 ]
 
+const funfacts = ref([
+  {
+    icon: "fa-solid fa-basketball",
+    label: "Basketball fan"
+  },
+  {
+    icon: "fa-solid fa-person-biking",
+    label: "Bike ride"
+  },
+  {
+    icon: "fa-solid fa-volleyball",
+    label: "Volleyball player"
+  },
+  {
+    icon: "fa-solid fa-computer",
+    label: "Plays DOTA"
+  },
+  {
+    icon: "fa-solid fa-mug-hot",
+    label: "Loves coffee"
+  },
+  {
+    icon: "fa-solid fa-paw",
+    label: "Owns 2 dogs"
+  },
+  {
+    icon: "fa-solid fa-people-roof",
+    label: "Family man"
+  },
+  {
+    icon: "fa-solid fa-dragon",
+    label: "Year of the dragon"
+  }
+])
+
 const onscroll = (el, listener) => {
   el.addEventListener('scroll', listener)
 }
@@ -72,6 +109,14 @@ const navbarlinksActive = () => {
   })
 }
 
+const setProgressBars = (waypointState) => {
+  console.log(waypointState)
+  let progress = select('.progress .progress-bar', true);
+  progress.forEach((el) => {
+    el.style.width = el.getAttribute('aria-valuenow') + '%'
+  });
+}
+
 onMounted(() => {
   window.addEventListener('load', navbarlinksActive)
   onscroll(document, navbarlinksActive)
@@ -87,7 +132,21 @@ onMounted(() => {
       once: true,
       mirror: false
     })
-  })
+  });
+
+  // let skilsContent = select('.skills-content');
+  // if (skilsContent) {
+  //   new Waypoint({
+  //     element: skilsContent,
+  //     offset: '80%',
+  //     handler: function() {
+  //       let progress = select('.progress .progress-bar', true);
+  //       progress.forEach((el) => {
+  //         el.style.width = el.getAttribute('aria-valuenow') + '%'
+  //       });
+  //     }
+  //   })
+  // }
 
   new PureCounter();
 })
@@ -192,62 +251,26 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="row">
-          <div class="col-lg-3 col-md-6">
+          <!-- <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
-              <!-- <i class="bi bi-emoji-smile"></i> -->
-              <i class="fa-solid fa-dragon"></i>
-              <!-- <font-awesome-icon icon="dragon" /> -->
-              <span
-                data-purecounter-start="0"
-                data-purecounter-end="1988"
-                data-purecounter-duration="1"
-                class="purecounter"
-              ></span>
-              <p>Year of  the Dragon</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-            <div class="count-box">
-              <!-- <i class="bi bi-journal-richtext"></i> -->
-              <i class="fa-solid fa-person-biking"></i>
-              <span
-                data-purecounter-start="0"
-                data-purecounter-end="45"
-                data-purecounter-duration="1"
-                class="purecounter"
-              ></span>
-              <p>kilometers, longest bike ride</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <!-- <i class="bi bi-headset"></i> -->
-              <i class="fa-solid fa-volleyball"></i>
-              <span
-                data-purecounter-start="0"
-                data-purecounter-end="1000"
-                data-purecounter-duration="1"
-                class="purecounter"
-              ></span>
-              <p>plus volleyball games</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <!-- <i class="bi bi-award"></i> -->
-              <i class="fa-solid fa-computer"></i>
+              <i class="bi bi-award"></i>
               <span
                 data-purecounter-start="0"
                 data-purecounter-end="6000"
                 data-purecounter-duration="1"
                 class="purecounter"
               ></span>
-              <p>Hours of DOTA</p>
+              <p>Basketball fan</p>
+            </div>
+          </div> -->
+
+          <div v-for="(fact, index) in funfacts" :key="index" class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i :class="fact.icon"></i>
+              <p>{{ fact.label }}</p>
             </div>
           </div>
+          
         </div>
       </div>
     </section>
@@ -265,7 +288,7 @@ onBeforeUnmount(() => {
           </p>
         </div>
 
-        <div class="row skills-content">
+        <Waypoint class="row" :active="true" @change="setProgressBars($evet)">
           <div class="col-lg-6">
             <div class="progress">
               <span class="skill">HTML <i class="val">100%</i></span>
@@ -347,7 +370,91 @@ onBeforeUnmount(() => {
               </div>
             </div>
           </div>
-        </div>
+        </Waypoint>
+
+        <!-- <div class="row skills-content">
+          <div class="col-lg-6">
+            <div class="progress">
+              <span class="skill">HTML <i class="val">100%</i></span>
+              <div class="progress-bar-wrap">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="100"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">CSS <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="90"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">JavaScript <i class="val">75%</i></span>
+              <div class="progress-bar-wrap">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="75"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="progress">
+              <span class="skill">PHP <i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="80"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="90"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Photoshop <i class="val">55%</i></span>
+              <div class="progress-bar-wrap">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="55"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div> -->
       </div>
     </section>
     <!-- End Skills Section -->

@@ -109,12 +109,13 @@ const navbarlinksActive = () => {
   })
 }
 
-const setProgressBars = (waypointState) => {
-  console.log(waypointState)
-  let progress = select('.progress .progress-bar', true);
-  progress.forEach((el) => {
-    el.style.width = el.getAttribute('aria-valuenow') + '%'
-  });
+const setProgressBars = () => {
+  setTimeout(() => {
+    let progress = select('.progress .progress-bar', true);
+    progress.forEach((el) => {
+      el.style.width = el.getAttribute('aria-valuenow') + '%'
+    });
+  },500)
 }
 
 onMounted(() => {

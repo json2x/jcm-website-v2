@@ -137,6 +137,62 @@ const skills2ndHalf = computed(() => {
   return items
 })
 
+const professionalExperiences = [
+  {
+    company: 'Smart Communications, Inc.',
+    roles: [
+      {
+        name: 'NOC Engineer',
+        dateRange: 'Jul 2011 - Jun 2016',
+        tenure: '5 yrs',
+        accomplishments: [
+          'Developed dashboards which are used in monitoring various Project’s Progress and Issues',
+          'Developed tools such as Network Activity Scheduler, Activity Score Card, Data logging systems, & etc',
+          'Developed UNIX shell scripts that check network elements parameter configuration/definitions',
+          'Audit BSS/NSS configuration changes (BTS, NodeB, BSC, RNC, MSS/MSC) on NOKIA-DX200, ERICSSON-APG43, HUAWEI-M2000 platforms',
+          'Manage consolidation and scheduling of nationwide network activity requests',
+          'Performs configuration and functionality testing of network elements'
+        ]
+      },
+      {
+        name: 'Fault Analytics Supervisor',
+        dateRange: 'Jun 2016 - Oct 2019',
+        tenure: '3 yrs 5 mos',
+        accomplishments: [
+          'Developed various data visualization dashboards using Tableau',
+          'Developed Site Database System (with Google Map Integration)',
+          'Developed Reports Repository Portal',
+          'Developed various Excel templates with macro applications',
+          'Manage Fault Management Trouble tickets',
+          'Analyze and Trend Network KPIs',
+          'Root-Cause-Analysis of recurring and common network faults and outages',
+          'Cascade and discuss KPI and RCA findings with regional groups'
+        ]
+      },
+      {
+        name: 'OSS Virtualization and Infra Specialist',
+        dateRange: 'Oct 2019 - Dec 2020',
+        tenure: '1 yr 3 mos',
+        accomplishments: [
+          'Developed Network Inventory Data Validation and Correction Scripts',
+          'Manage Network Orchestration for VNFs and SDNs'
+        ]
+      },
+      {
+        name: 'DevOps Supervisor',
+        dateRange: 'Jan 2021 - Jan 2022',
+        tenure: '1 yr 1 mo',
+        accomplishments: [
+          'Design, Develop and Manage network automation tools',
+          'Developed Network Activity Logger application',
+          'Developed Network Asset Inventory Database application',
+          'Developed various Report Automations'
+        ]
+      },
+    ]
+  }
+]
+
 const onscroll = (el, listener) => {
   el.addEventListener('scroll', listener)
 }
@@ -510,6 +566,18 @@ onBeforeUnmount(() => {
           </div>
           <div class="col-lg-6">
             <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-subtitle">
+              <div class="company-image">
+                <img width="50" src="https://media.licdn.com/dms/image/D560BAQFYpHSi5LD2kw/company-logo_100_100/0/1685941974255?e=1694044800&v=beta&t=vYL6lu5b2lrg4ydvdDJNyCjIea0FWLJNasS7MvBWsoo" alt="logo">
+              </div>
+              <div class="company-detail">
+                <h5 class="company-name">
+                  Smart Communications, Inc.
+                </h5>
+                <p class="company-tenure">10 yrs 7 mos</p>
+              </div>
+              
+            </div>
             <div class="resume-item">
               <h4>Senior graphic design specialist</h4>
               <h5>2019 - Present</h5>
@@ -1237,4 +1305,28 @@ onBeforeUnmount(() => {
   ></a>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.resume-subtitle .company-image{
+  display: inline-block;
+  padding: 0 auto;
+}
+
+.resume-subtitle .company-detail{
+  display: inline-block;
+}
+.resume-subtitle .company-name{
+  font-weight: 700; 
+  color: #45505b; 
+  margin: 0px !important;
+}
+
+.resume-subtitle .company-tenure{
+  font-size: 16px;
+  background: #f7f8f9;
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+</style>

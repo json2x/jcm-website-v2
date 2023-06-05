@@ -7,9 +7,10 @@
 
 import AOS from 'aos'
 import PureCounter from '@srexi/purecounterjs'
-import { Waypoint } from "vue-waypoint";
+// import { Waypoint } from "vue-waypoint";
+import 'waypoints/lib/noframework.waypoints.js'
 import { Typed } from "@duskmoon/vue3-typed-js";
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 
 
 import SocialLinks from './components/SocialLinks.vue';
@@ -28,7 +29,7 @@ const links = ref([
   {id: '#hero', label: 'Home', icon: 'bx bx-home'},
   {id: '#about', label: 'About', icon: 'bx bx-user'},
   {id: '#resume', label: 'Resume', icon: 'bx bx-file-blank'},
-  {id: '#portfolio', label: 'Portfolio', icon: 'bx bx-book-content'},
+  // {id: '#portfolio', label: 'Portfolio', icon: 'bx bx-book-content'},
   {id: '#services', label: 'Services', icon: 'bx bx-server'},
   {id: '#contact', label: 'Contact', icon: 'bx bx-envelope'},
 ])
@@ -81,6 +82,61 @@ const funfacts = ref([
   }
 ])
 
+const skills = ref([
+  {name: 'HTML', level: 100},
+  {name: 'JavaScript', level: 95},
+  {name: 'Python', level: 95},
+  {name: 'FastAPI', level: 90},
+  {name: 'Quasar', level: 90},
+  {name: 'Django', level: 80},
+  {name: 'Flask', level: 80},
+  {name: 'VueJS', level: 90},
+  {name: 'JQuery', level: 85},
+  {name: 'Node JS', level: 80},
+  {name: 'CSS', level: 80},
+  {name: 'Express JS', level: 80},  
+  {name: 'Git', level: 80},
+  {name: 'Docker', level: 80},
+  {name: 'MySQL', level: 80},
+  {name: 'MariaDB', level: 80},
+  {name: 'Oracle', level: 80},
+  {name: 'MS SQL', level: 80},
+  {name: 'MongoDB', level: 80},
+  {name: 'Apache Web Server', level: 80},
+  {name: 'MS Excel', level: 80},
+  {name: 'Office VBA', level: 80},
+  {name: 'MS Azure Services', level: 80},
+  {name: 'Linux SysAd', level: 80},
+  {name: 'Bash', level: 75},
+  {name: 'ChatGPT & Other LLMs', level: 80},
+  {name: 'Machine Learning', level: 70},
+])
+
+const sortedSkills = computed(() => {
+  return [...skills.value].sort((a,b) => b.level - a.level)
+})
+
+const skills1stHalf = computed(() => {
+  const items = []
+  const halfLen = Math.ceil(sortedSkills.value.length / 2)
+
+  for (let i = 0; i < halfLen; i++) {
+    items.push(sortedSkills.value[i])
+  }
+  return items
+})
+
+const skills2ndHalf = computed(() => {
+  const items = []
+  const halfLen = Math.floor(sortedSkills.value.length / 2)
+  const secondHalfStartIndex = halfLen + (sortedSkills.value.length % 2);
+
+  for (let i = secondHalfStartIndex; i < sortedSkills.value.length; i++) {
+    items.push(sortedSkills.value[i])
+  }
+  return items
+})
+
 const onscroll = (el, listener) => {
   el.addEventListener('scroll', listener)
 }
@@ -109,14 +165,12 @@ const navbarlinksActive = () => {
   })
 }
 
-const setProgressBars = () => {
-  setTimeout(() => {
-    let progress = select('.progress .progress-bar', true);
-    progress.forEach((el) => {
-      el.style.width = el.getAttribute('aria-valuenow') + '%'
-    });
-  },500)
-}
+// const setProgressBars = () => {
+//   let progress = select('.progress .progress-bar', true);
+//   progress.forEach((el) => {
+//     el.style.width = el.getAttribute('aria-valuenow') + '%'
+//   });
+// }
 
 onMounted(() => {
   window.addEventListener('load', navbarlinksActive)
@@ -135,19 +189,19 @@ onMounted(() => {
     })
   });
 
-  // let skilsContent = select('.skills-content');
-  // if (skilsContent) {
-  //   new Waypoint({
-  //     element: skilsContent,
-  //     offset: '80%',
-  //     handler: function() {
-  //       let progress = select('.progress .progress-bar', true);
-  //       progress.forEach((el) => {
-  //         el.style.width = el.getAttribute('aria-valuenow') + '%'
-  //       });
-  //     }
-  //   })
-  // }
+  let skilsContent = select('.skills-content');
+  if (skilsContent) {
+    new Waypoint({
+      element: skilsContent,
+      offset: '80%',
+      handler: function() {
+        let progress = select('.progress .progress-bar', true);
+        progress.forEach((el) => {
+          el.style.width = el.getAttribute('aria-valuenow') + '%'
+        });
+      }
+    })
+  }
 
   new PureCounter();
 })
@@ -278,20 +332,32 @@ onBeforeUnmount(() => {
     <!-- End Facts Section -->
 
     <!-- ======= Skills Section ======= -->
+    <!-- <Waypoint :active="true" @change="setProgressBars($evet)"> -->
     <section id="skills" class="skills section-bg">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Skills</h2>
           <p>
-            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum
-            quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui
-            impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+            I possess a broad range of proficiencies in programming languages and software development tools. With expertise in diverse frameworks and databases, I have demonstrated adaptability and competence in various programming environments. My experience showcases a versatile skill set capable of delivering quality results in different software development applications.
           </p>
         </div>
 
-        <Waypoint class="row" :active="true" @change="setProgressBars($evet)">
+        <div class="row skills-content">
           <div class="col-lg-6">
-            <div class="progress">
+            <div v-for="(skill, index) in skills1stHalf" :key="index" class="progress">
+              <span class="skill">{{ skill.name }} <i class="val">{{ skill.level }}%</i></span>
+              <div class="progress-bar-wrap">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  :aria-valuenow="skill.level"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+
+            <!-- <div class="progress">
               <span class="skill">HTML <i class="val">100%</i></span>
               <div class="progress-bar-wrap">
                 <div
@@ -328,11 +394,23 @@ onBeforeUnmount(() => {
                   aria-valuemax="100"
                 ></div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div class="col-lg-6">
-            <div class="progress">
+            <div v-for="(skill, index) in skills2ndHalf" :key="index" class="progress">
+              <span class="skill">{{ skill.name }} <i class="val">{{ skill.level }}%</i></span>
+              <div class="progress-bar-wrap">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  :aria-valuenow="skill.level"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+            <!-- <div class="progress">
               <span class="skill">PHP <i class="val">80%</i></span>
               <div class="progress-bar-wrap">
                 <div
@@ -369,95 +447,13 @@ onBeforeUnmount(() => {
                   aria-valuemax="100"
                 ></div>
               </div>
-            </div>
+            </div> -->
           </div>
-        </Waypoint>
-
-        <!-- <div class="row skills-content">
-          <div class="col-lg-6">
-            <div class="progress">
-              <span class="skill">HTML <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="100"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="90"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="75"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="progress">
-              <span class="skill">PHP <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="80"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="90"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="55"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+        </div>
       </div>
     </section>
+    
+    <!-- </Waypoint> -->
     <!-- End Skills Section -->
 
     <!-- ======= Resume Section ======= -->
@@ -563,7 +559,7 @@ onBeforeUnmount(() => {
     <!-- End Resume Section -->
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
+    <!-- <section id="portfolio" class="portfolio section-bg">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Portfolio</h2>
@@ -825,7 +821,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- End Portfolio Section -->
 
     <!-- ======= Services Section ======= -->

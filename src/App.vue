@@ -565,15 +565,15 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div class="col-lg-6">
-            <h3 class="resume-title">Professional Experience</h3>
+            <!-- <h3 class="resume-title">Professional Experience</h3> -->
             <div class="resume-subtitle">
               <div class="company-image">
-                <img width="50" src="https://media.licdn.com/dms/image/D560BAQFYpHSi5LD2kw/company-logo_100_100/0/1685941974255?e=1694044800&v=beta&t=vYL6lu5b2lrg4ydvdDJNyCjIea0FWLJNasS7MvBWsoo" alt="logo">
+                <img src="https://media.licdn.com/dms/image/D560BAQFYpHSi5LD2kw/company-logo_100_100/0/1685941974255?e=1694044800&v=beta&t=vYL6lu5b2lrg4ydvdDJNyCjIea0FWLJNasS7MvBWsoo" alt="logo">
               </div>
               <div class="company-detail">
-                <h5 class="company-name">
+                <h3 class="resume-title">
                   Smart Communications, Inc.
-                </h5>
+                </h3>
                 <p class="company-tenure">10 yrs 7 mos</p>
               </div>
               
@@ -1072,15 +1072,15 @@ onBeforeUnmount(() => {
     <!-- End Services Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials section-bg">
+    <!-- <section id="testimonials" class="testimonials section-bg">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Testimonials</h2>
         </div>
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
+          <div class="swiper-wrapper"> -->
+            <!-- <div class="swiper-slide">
               <div class="testimonial-item">
                 <img
                   src="./assets/img/testimonials/testimonials-1.jpg"
@@ -1097,10 +1097,10 @@ onBeforeUnmount(() => {
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div>
+            </div> -->
             <!-- End testimonial item -->
 
-            <div class="swiper-slide">
+            <!-- <div class="swiper-slide">
               <div class="testimonial-item">
                 <img
                   src="./assets/img/testimonials/testimonials-2.jpg"
@@ -1117,10 +1117,10 @@ onBeforeUnmount(() => {
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div>
+            </div> -->
             <!-- End testimonial item -->
 
-            <div class="swiper-slide">
+            <!-- <div class="swiper-slide">
               <div class="testimonial-item">
                 <img
                   src="./assets/img/testimonials/testimonials-3.jpg"
@@ -1137,10 +1137,10 @@ onBeforeUnmount(() => {
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div>
+            </div> -->
             <!-- End testimonial item -->
 
-            <div class="swiper-slide">
+            <!-- <div class="swiper-slide">
               <div class="testimonial-item">
                 <img
                   src="./assets/img/testimonials/testimonials-4.jpg"
@@ -1157,10 +1157,10 @@ onBeforeUnmount(() => {
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div>
+            </div> -->
             <!-- End testimonial item -->
 
-            <div class="swiper-slide">
+            <!-- <div class="swiper-slide">
               <div class="testimonial-item">
                 <img
                   src="./assets/img/testimonials/testimonials-5.jpg"
@@ -1177,13 +1177,13 @@ onBeforeUnmount(() => {
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div>
+            </div> -->
             <!-- End testimonial item -->
-          </div>
+          <!-- </div>
           <div class="swiper-pagination"></div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- End Testimonials Section -->
 
     <!-- ======= Contact Section ======= -->
@@ -1315,6 +1315,10 @@ onBeforeUnmount(() => {
 .resume-subtitle .company-detail{
   display: inline-block;
 }
+
+.resume-subtitle .company-detail h3{
+  margin: 10px 0 !important;
+}
 .resume-subtitle .company-name{
   font-weight: 700; 
   color: #45505b; 
@@ -1322,7 +1326,7 @@ onBeforeUnmount(() => {
 }
 
 .resume-subtitle .company-tenure{
-  font-size: 16px;
+  font-size: 14px;
   background: #f7f8f9;
   padding: 5px 15px;
   display: inline-block;

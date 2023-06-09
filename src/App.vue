@@ -272,6 +272,17 @@ const select = (el, all = false) => {
   }
 }
 
+const on = (type, el, listener, all = false) => {
+    let selectEl = select(el, all)
+    if (selectEl) {
+      if (all) {
+        selectEl.forEach(e => e.addEventListener(type, listener))
+      } else {
+        selectEl.addEventListener(type, listener)
+      }
+    }
+  }
+
 const navbarlinks = ref(null)
 const navbarlinksActive = () => {
   let position = window.scrollY + 200
@@ -318,11 +329,16 @@ onMounted(() => {
     })
   }
 
+  /**
+   * Mobile nav toggle
+   */
+   on('click', '.mobile-nav-toggle', function() {
+    select('body').classList.toggle('mobile-nav-active')
+    this.classList.toggle('bi-list')
+    this.classList.toggle('bi-x')
+  })
+
   new PureCounter();
-})
-
-onBeforeUnmount(() => {
-
 })
 </script>
 

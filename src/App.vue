@@ -10,7 +10,7 @@ import PureCounter from '@srexi/purecounterjs'
 // import { Waypoint } from "vue-waypoint";
 import 'waypoints/lib/noframework.waypoints.js'
 import { Typed } from "@duskmoon/vue3-typed-js";
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 
 import SocialLinks from './components/SocialLinks.vue';
@@ -42,7 +42,7 @@ const aboutInfo1 = [
 ]
 const aboutInfo2 = [
   {label: 'City', info: 'Davao City, Philippines'},
-  {label: 'Website', info: 'https://jaysonmillan.com'},
+  {label: 'Website', info: 'https://jaysonmillan.site'},
   {label: 'Email', info: 'jcmitconsulting@gmail.com'},
   {label: 'Availability', info: 'Freelance, Side hustles'}
 ]
@@ -203,7 +203,7 @@ const professionalExperiences = ref(
       id: 1,
       companyName: 'inriver',
       logo: "https://media.licdn.com/dms/image/C4E0BAQG7pZy36AS-yA/company-logo_100_100/0/1624427866782?e=1694649600&v=beta&t=pf6megst9Sf0RlWPMSnDIk_NfafQSVNKZP0Ijxwga9A",
-      totalTenure: 'Jan 2022 - Preset',
+      totalTenure: 'Jan 2022 - Present',
       roles: [
         {
           index: 0,
